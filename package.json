@@ -1,0 +1,15 @@
+{
+  "Name": "Spotify AppLink",
+  "Version": "0.0.1",
+  "dependencies": {
+    "axios": "^0.19.2",
+    "dotenv": "^8.2.0",
+    "moment": "^2.26.0",
+    "telegraf": "^3.38.0"
+  },
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node app",
+    "dev": "npx nodemon app"
+  }
+}
