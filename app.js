@@ -17,7 +17,7 @@ bot.hears(spotifyRegex, async (ctx) => {
         // Set Authentication
         config = {
             headers: {
-                user: process.env.USER,
+                user: process.env.USER_LOGIN,
                 password: process.env.PASSWORD,
             }
         }
