@@ -14,6 +14,13 @@ bot.hears(spotifyRegex, async (ctx) => {
 
     // Request Data from @LuisTessaro/webtoapp-spotify-api microservice
     try {
+
+        const TYPES = {
+            playlist: 'Playlist:',
+            track: 'Track:',
+            album: 'Album:'
+        }
+
         // Set Authentication
         config = {
             headers: {
@@ -33,11 +40,13 @@ bot.hears(spotifyRegex, async (ctx) => {
         const finalImage = {url: data.image, filename: data.title}
         // Format Date
         const formattedDate = moment(data.release_date).format('ll')
+
+        const additionalInfos = `\nAuthor: ${data.author}\nRelease Date: ${formattedDate}`
         
         // add extra params to send on Bot reply
         const extras =
             {
-                caption: `Song: ${data.title}\nAuthor: ${data.author}\nRelease Date: ${formattedDate}\n\nSent by: @${ctx.message.from.username}`,
+                caption: `${TYPES[data.type]} ${data.title.split(', a playlist by')[0]}${data.type !== 'playlist'? additionalInfos : ''}\n\nSent by: @${ctx.message.from.username}`,
                 reply_markup: {"inline_keyboard":[
                     [{"text": 'SpotifyApp',"url": finalLink,"hide":false}]
                 ]},
